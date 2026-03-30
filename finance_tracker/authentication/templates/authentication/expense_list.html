@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="card">
+    <h2>Your Expenses</h2>
+    <table>
+        <tr><th>Category</th><th>Amount</th><th>Note</th><th>Date</th></tr>
+        {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.category }}</td>
+                <td>₹{{ expense.amount }}</td>
+                <td>{{ expense.note }}</td>
+                <td>{{ expense.date }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4">No expenses recorded.</td></tr>
+        {% endfor %}
+    </table>
+    <a class="btn" href="{% url 'expense_add' %}">Add Expense</a>
+</div>
+{% endblock %}

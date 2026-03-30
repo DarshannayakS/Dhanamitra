@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+  <div class="card shadow-lg border-0">
+    <div class="card-header bg-primary text-white text-center">
+      <h4><i class="bi bi-plus-circle"></i> Add Financial Goal</h4>
+    </div>
+    <div class="card-body">
+      <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save Goal</button>
+        <a href="{% url 'goals_list' %}" class="btn btn-outline-secondary ms-2">Cancel</a>
+      </form>
+      {% if form.instance.suggestion %}
+      <div class="alert alert-info mt-3">
+          <strong>Investment Suggestion:</strong><br>{{ form.instance.suggestion|linebreaks }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

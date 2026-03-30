@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-bullseye"></i> Financial Goals</h2>
+    <a href="{% url 'add_goal' %}" class="btn btn-primary">
+      <i class="bi bi-plus-circle"></i> Add Goal
+    </a>
+  </div>
+  <div class="row">
+    {% for goal in goals %}
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ goal.name }}</h5>
+            <p class="card-text">
+              <strong>Target:</strong> ₹{{ goal.amount }}<br>
+              <strong>Current:</strong> ₹{{ goal.current_amount }}<br>
+              <strong>Due Date:</strong> {{ goal.due_date|date:"M d, Y" }}<br>
+              <strong>Type:</strong> {{ goal.goal_type }}<br>
+              <strong>Duration:</strong> {{ goal.duration_months }} months<br>
+              {% if goal.suggestion %}
+                <strong>Suggestion:</strong> {{ goal.suggestion|truncatechars:100 }}
+              {% endif %}
+            </p>
+            <a href="{% url 'edit_goal' goal.pk %}" class="btn btn-warning btn-sm">
+              <i class="bi bi-pencil"></i> Edit
+            </a>
+            <a href="{% url 'delete_goal' goal.pk %}" class="btn btn-danger btn-sm ms-2">
+              <i class="bi bi-trash"></i> Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <div class="alert alert-info text-center">
+          <i class="bi bi-info-circle"></i> No Goals Added Yet. <a href="{% url 'add_goal' %}">Add your first goal!</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

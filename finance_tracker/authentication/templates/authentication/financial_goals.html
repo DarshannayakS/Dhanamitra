@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+  <div class="card shadow border-0">
+    <div class="card-header bg-primary text-white">
+      <h4><i class="bi bi-flag"></i> Financial Goals</h4>
+    </div>
+    <div class="card-body">
+      <form method="POST" class="mb-4">{% csrf_token %}
+        <div class="row">
+          {% for field in form %}
+          <div class="col-md-6 mb-2">{{ field.label_tag }} {{ field }}</div>
+          {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle"></i> Save Goal</button>
+      </form>
+      <hr>
+      <h5>Your Goals</h5>
+      {% if goals %}
+        <table class="table table-hover">
+          <thead><tr><th>Name</th><th>Type</th><th>Amount</th><th>Duration (months)</th><th>Recurring?</th><th>Note</th></tr></thead>
+          <tbody>
+          {% for goal in goals %}
+            <tr>
+              <td>{{ goal.name }}</td>
+              <td>{{ goal.goal_type }}</td>
+              <td>₹{{ goal.amount }}</td>
+              <td>{{ goal.duration_months }}</td>
+              <td>{{ goal.is_recurring|yesno:"Yes,No" }}</td>
+              <td>{{ goal.note }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No financial goals set yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

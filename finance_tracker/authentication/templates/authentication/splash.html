@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dhanamitra Money Friend — Welcome</title>
+    <style>
+      html, body {
+        height: 100%; width: 100%;
+        margin: 0; padding: 0;
+      }
+      body {
+        background: linear-gradient(135deg,#14A38B 0%,#F1F8E1 100%);
+        height: 100vh; width: 100vw;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family:'Segoe UI',sans-serif;
+      }
+      .logo-fade {
+        opacity: 0;
+        width: 280px;
+        max-width: 72vw;
+        margin-bottom: 1.2em;
+        animation: logoIn 1.32s cubic-bezier(.44,1.64,.81,.22) forwards;
+      }
+      @keyframes logoIn {
+        0% { opacity:0; transform:scale(0.87);}
+        55% { opacity:1; transform:scale(1.11);}
+        100% {opacity:1; transform:scale(1);}
+      }
+      .title {
+        font-size:2.4rem;font-weight:700;letter-spacing:1.4px;
+        color:#137b60;margin-bottom:10px;margin-top:2px;text-align:center;
+      }
+      .tagline {
+        color:#345;font-size:1.25rem;margin-bottom:2.2em;text-align:center;
+      }
+      .button {
+        background:linear-gradient(90deg,#14A38B 60%, #7dc065 100%);
+        color:#fff;padding:0.9em 2.7em;font-size:1.22rem;font-weight:600;
+        border:none;border-radius:34px;cursor:pointer;
+        box-shadow:0 2px 9px 0 #14b48b18;transition:background 0.2s;
+        margin-top:10px;
+        opacity:0;
+        animation: fadeInBtn 1s 1.1s forwards;
+        display:inline-block;
+      }
+      .button:hover {
+        background:linear-gradient(90deg,#18d3a5 40%, #aad63f 100%);
+      }
+      @keyframes fadeInBtn {
+        from {opacity:0;}
+        to {opacity:1;}
+      }
+      @media (max-width: 500px) {
+        .logo-fade {width: 72vw;}
+        .title {font-size:1.27rem;}
+        .tagline {font-size:1.02rem;}
+      }
+    </style>
+</head>
+<body>
+    <div class="title">Dhanamitra<br>Money Friend</div>
+    <div class="tagline">helps you manage and grow your finances</div>
+    <button onclick="window.location.href='{% url 'login' %}'" class="button">Get Started</button>
+</body>
+</html>

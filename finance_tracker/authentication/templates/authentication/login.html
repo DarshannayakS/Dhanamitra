@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dhanamitra Money Friend — Login</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #14A38B 0%, #F1F8E1 100%);
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+      }
+      .center-box {
+        background: rgba(255,255,255,0.95);
+        border-radius: 34px;
+        box-shadow: 0 8px 32px 0 rgba(20,180,139,0.15);
+        padding: 64px 48px;
+        text-align: center;
+        position: relative;
+        min-width: 380px;
+        animation: fadeIn 1s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .news-section {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 400px;
+        text-align: left;
+      }
+      .news-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #137b60;
+        margin-bottom: 10px;
+      }
+      .news-item {
+        background: #f9f9f9;
+        padding: 10px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        border-left: 4px solid #14A38B;
+        font-size: 0.9rem;
+        color: #333;
+      }
+      .news-item a {
+        color: #14A38B;
+        text-decoration: none;
+      }
+      .news-item a:hover {
+        text-decoration: underline;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        color: #137b60;
+        animation: slideIn 1s ease-out 0.5s both;
+      }
+      @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .tagline {
+        color: #234;
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        animation: slideIn 1s ease-out 0.7s both;
+      }
+      form {
+        animation: slideIn 1s ease-out 0.9s both;
+      }
+      input {
+        width: 100%;
+        padding: 12px 16px;
+        margin: 8px 0;
+        border: 2px solid #e0e0e0;
+        border-radius: 25px;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        box-sizing: border-box;
+      }
+      input:focus {
+        outline: none;
+        border-color: #14A38B;
+        box-shadow: 0 0 8px rgba(20,163,139,0.3);
+      }
+      button {
+        background: linear-gradient(90deg,#14A38B 60%, #7dc065 100%);
+        color: #fff;
+        padding: 12px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 0 2px 6px 0 rgba(20,180,139,0.08);
+        transition: background 0.3s, transform 0.2s;
+        margin-top: 20px;
+        width: 100%;
+      }
+      button:hover {
+        background: linear-gradient(90deg,#18d3a5 40%, #aad63f 100%);
+        transform: translateY(-2px);
+      }
+      .signup-link {
+        margin-top: 20px;
+        color: #666;
+        animation: slideIn 1s ease-out 1.1s both;
+      }
+      .signup-link a {
+        color: #14A38B;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+      .signup-link a:hover {
+        color: #7dc065;
+      }
+    </style>
+</head>
+<body>
+  <div class="center-box">
+    <div class="title">Welcome Back</div>
+    <div class="tagline">Securely access your financial dashboard</div>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username" required><br>
+      <input type="password" name="password" placeholder="Password" required><br>
+      <button type="submit">Login</button>
+    </form>
+    <p class="signup-link">Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+<div class="news-section">
+  <div class="news-title">Daily Motivation</div>
+  <div class="news-item" style="font-style: italic; font-size: 1.1rem;">
+    {{ quote }}
+  </div>
+</div>
+
+</body>
+</html>

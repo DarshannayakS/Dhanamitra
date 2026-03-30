@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container mt-5" style="max-width: 600px;">
+  <div class="card shadow-lg border-0">
+    <div class="card-header bg-primary text-white text-center">
+      <h4><i class="bi bi-plus-circle"></i> Add Investment</h4>
+    </div>
+    <div class="card-body p-4">
+      <form method="POST">{% csrf_token %}
+        {% for field in form %}
+          <div class="mb-3">
+            {{ field.label_tag }} {{ field }}
+            {% if field.errors %}
+            <div class="text-danger small">{{ field.errors }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success w-100 mt-3">
+          <i class="bi bi-check-circle"></i> Save
+        </button>
+        <a href="{% url 'investment_list' %}" class="btn btn-outline-secondary w-100 mt-2">Back</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card { border-radius: 16px; }
+  input, select, textarea {
+    border-radius: 10px !important;
+    padding: 10px 12px !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  button.btn {
+    border-radius: 40px;
+    font-weight: 600;
+  }
+</style>
+{% endblock %}

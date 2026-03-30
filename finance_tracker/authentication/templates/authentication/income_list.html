@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Income Records</h2>
+
+    <!-- Add Income Button -->
+    <div class="text-end mb-3">
+        <a href="{% url 'income_add' %}" class="btn btn-success">+ Add Income</a>
+    </div>
+
+    <!-- Income Summary -->
+    <div class="alert alert-success">
+        <strong>Total Income:</strong> ₹{{ total_income }}
+    </div>
+
+    <!-- Income Table -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title mb-3">Your Recent Incomes</h5>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Amount (₹)</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in incomes %}
+                        <tr>
+                            <td>{{ i.source }}</td>
+                            <td>{{ i.amount }}</td>
+                            <td>{{ i.date }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center">No income records found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

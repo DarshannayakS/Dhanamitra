@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Suggest an Investment</h2>
+  <form method="post">{% csrf_token %}
+    <textarea name="suggestion" required rows="4"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
